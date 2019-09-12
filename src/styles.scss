@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  //themeing
+  --color-primary: #707070;
+  --color-secondary: #1f1d20;
+  --color-tertiary: #c2b7ab;
+  --color-tint: #cbcac9;
+  //fonts
+  --font-title: "Inconsolata", monospace;
+}
+
+body {
+  background-color: #312d28;
+  overflow: hidden;
+}
