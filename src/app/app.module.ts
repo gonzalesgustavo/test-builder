@@ -1,24 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { BuilderComponent } from './builder/builder.component';
-import { MenuComponent } from './menu/menu.component';
-import { AssemblyComponent } from './builder/assembly/assembly.component';
-import { StagingComponent } from './builder/assembly/staging/staging.component';
+import { AppComponent } from "./app.component";
+import { BuilderComponent } from "./builder/builder.component";
+import { MenuComponent } from "./controlboard/menu.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BuilderComponent,
-    MenuComponent,
-    AssemblyComponent,
-    StagingComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, BuilderComponent, MenuComponent],
+  imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
