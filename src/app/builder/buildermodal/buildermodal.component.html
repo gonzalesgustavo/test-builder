@@ -1,0 +1,35 @@
+<div class="BuilderModal">
+<h2>Problem Type:</h2>
+<div class="selector">
+<div class="selector-in" *ngFor="let option of formSelectors">
+    <input 
+        type="radio"
+        name="formtype"
+        value="{{option}}"
+        (change)="radioChangeHandler($event)" /> {{option}}
+</div>
+</div>
+<div class="modal-body">
+    <p class="empty-selector" *ngIf="formType === ''"> Please select a proplem type or press cancel!</p>
+    <div *ngIf="formType === 'Math' || formType === 'Fraction'">
+    <form [formGroup]="mathForm" (ngSubmit)="onMathSubmit()">
+        <div class="math-form">
+            <input type="text" formControlName="attrOne" />
+            <input type="text" formControlName="symbol" />
+            <input type="text" formControlName="attrTwo" />
+        </div>
+        <input class="sub-btn btn btn-bdr" type="submit" [disabled]="!mathForm.valid" value="Submit">
+    </form>
+    </div>
+      <div *ngIf="formType === 'Paragraph'">
+        <form [formGroup]="questionForm" (ngSubmit)="onQuestionSubmit()">
+            <div class="para-form">
+                <textarea name="question" formControlName="text" id="q-text" cols="76" rows="10"></textarea>
+            </div>
+            <input class="sub-btn btn btn-bdr" type="submit" [disabled]="!questionForm.valid" value="Submit">
+        </form>
+    </div>
+    <button class="cancel-btn btn btn-bdr" (click)="onCancelHandler()">Cancel</button>
+</div>
+
+</div>
