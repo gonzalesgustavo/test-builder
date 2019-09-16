@@ -3,6 +3,7 @@
   height: 120px;
   background: var(--color-tint);
   border-radius: 0.5rem;
+  box-shadow: 5px 5px var(--color-primary);
 }
 .menu {
   height: 30px;
@@ -19,8 +20,25 @@
 .problem-form {
   text-align: center;
   padding-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  p {
+    padding-top: 1px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 28pt;
+  }
   input {
     height: 44px;
     width: 70px;
   }
+}
+
+.addition {
+  background: #4d9292;
+}
+
+.subtraction {
+  background: #a07de2;
 }

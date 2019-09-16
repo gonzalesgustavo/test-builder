@@ -13,16 +13,10 @@ export class WarehouseService {
   }
 
   getCommands() {
-    return this._commands.pipe(
-      take(1),
-      tap(commands => {
-        console.log(commands);
-      })
-    );
+    return this._commands.pipe(take(1));
   }
 
   addCommand(command: string) {
-    console.log(command);
     return this._commands.pipe(
       take(1),
       tap(commands => {

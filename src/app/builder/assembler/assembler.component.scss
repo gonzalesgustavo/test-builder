@@ -1,8 +1,12 @@
 .Assembler {
   width: 95%;
-  height: 95%;
+  height: 700px;
   margin: 0 auto;
-  margin-top: 12px;
+  margin-top: 24px;
   padding: 20x;
   overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 12px;
 }

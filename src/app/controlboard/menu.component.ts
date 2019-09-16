@@ -12,8 +12,6 @@ export class MenuComponent implements OnInit {
   ngOnInit() {}
 
   handleControlBtnClick(type: string) {
-    this.warehouseService.addCommand(type).subscribe(() => {
-      console.log("done");
-    });
+    this.warehouseService.addCommand(type).subscribe(() => {});
   }
 }
