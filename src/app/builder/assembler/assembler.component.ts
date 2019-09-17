@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 import { WarehouseService } from "src/app/warehouse.service";
+import { Order } from "../order.model";
 
 @Component({
   selector: "app-assembler",
@@ -9,7 +10,7 @@ import { WarehouseService } from "src/app/warehouse.service";
 })
 export class AssemblerComponent implements OnInit, OnDestroy {
   private sub: Subscription;
-  public commands: string[];
+  public commands: Order[];
 
   constructor(private warehouseService: WarehouseService) {}
 

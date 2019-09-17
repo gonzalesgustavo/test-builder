@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { take, tap } from "rxjs/operators";
+import { Order } from "./builder/order.model";
 
 @Injectable({
   providedIn: "root"
 })
 export class WarehouseService {
-  private _commands = new BehaviorSubject<string[]>([]);
+  private _commands = new BehaviorSubject<Order[]>([]);
 
   constructor() {
     this._commands.asObservable();
@@ -16,7 +17,7 @@ export class WarehouseService {
     return this._commands.pipe(take(1));
   }
 
-  addCommand(command: string) {
+  addCommand(command: Order) {
     return this._commands.pipe(
       take(1),
       tap(commands => {

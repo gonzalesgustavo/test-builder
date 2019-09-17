@@ -15,7 +15,15 @@
     <form [formGroup]="mathForm" (ngSubmit)="onMathSubmit()">
         <div class="math-form">
             <input type="text" formControlName="attrOne" />
-            <input type="text" formControlName="symbol" />
+              <div class="custom-select">
+              <h4>Symbol:</h4>
+                <select formControlName="symbol" style="width: 70px; height: 44px;font-size: 20pt;">
+                    <option value="+" >+</option>
+                    <option value="-">-</option>
+                    <option value="x">x</option>
+                    <option value="÷">÷</option>
+                </select>
+                </div>
             <input type="text" formControlName="attrTwo" />
         </div>
         <input class="sub-btn btn btn-bdr" type="submit" [disabled]="!mathForm.valid" value="Submit">

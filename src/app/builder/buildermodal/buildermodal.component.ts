@@ -1,7 +1,8 @@
 import { FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { MatDialogRef } from "@angular/material";
 import { WarehouseService } from "src/app/warehouse.service";
+import { Order } from "../order.model";
 
 @Component({
   selector: "app-buildermodal",
@@ -11,7 +12,7 @@ import { WarehouseService } from "src/app/warehouse.service";
 export class BuildermodalComponent implements OnInit {
   formType: string = "";
   formSelectors = ["Math", "Fraction", "Paragraph"];
-
+  passedInData: any;
   mathForm = this.fb.group({
     attrOne: ["", Validators.required],
     symbol: ["+", Validators.required],
@@ -21,7 +22,6 @@ export class BuildermodalComponent implements OnInit {
     text: ["", Validators.required]
   });
   constructor(
-    @Inject(MAT_DIALOG_DATA) data,
     private dialogRef: MatDialogRef<BuildermodalComponent>,
     private fb: FormBuilder,
     private warehouseService: WarehouseService
@@ -34,12 +34,31 @@ export class BuildermodalComponent implements OnInit {
   }
 
   onMathSubmit() {
-    // this.warehouseService.addCommand(type).subscribe(() => {});
-    console.log(this.mathForm.value);
+    let order: Order = {
+      id: Math.floor(Math.random() * 10000000),
+      type: this.formType,
+      payload: {
+        attrOne: this.mathForm.value.attrOne,
+        symbol: this.mathForm.value.symbol.toUpperCase(),
+        attrTwo: this.mathForm.value.attrTwo
+      }
+    };
+    this.warehouseService.addCommand(order).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   onQuestionSubmit() {
-    console.log(this.questionForm.value);
+    let order: Order = {
+      id: Math.floor(Math.random() * 10000000),
+      type: this.formType,
+      payload: {
+        text: this.questionForm.value.text
+      }
+    };
+    this.warehouseService.addCommand(order).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   onCancelHandler() {

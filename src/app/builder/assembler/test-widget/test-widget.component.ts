@@ -1,25 +1,33 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: "app-test-widget",
+  selector: "test-widget",
   templateUrl: "./test-widget.component.html",
   styleUrls: ["./test-widget.component.scss"]
 })
 export class TestWidgetComponent implements OnInit {
-  @Input("inType") type: string;
+  @Input("id") id: number;
+  @Input("symbol") symbol: string;
+  @Input("attrOne") attrOne: string;
+  @Input("attrTwo") attrTwo: string;
+  @Input("text") text?: string;
+
   public bgColor: string;
-  public symbol: string;
   constructor() {}
 
   ngOnInit() {
-    switch (this.type) {
-      case "add":
+    switch (this.symbol) {
+      case "+":
         this.bgColor = "addition";
-        this.symbol = "+";
         break;
-      case "sub":
+      case "-":
         this.bgColor = "subtraction";
-        this.symbol = "-";
+        break;
+      case "X":
+        this.bgColor = "multiplication";
+        break;
+      case "÷":
+        this.bgColor = "division";
         break;
       default:
         break;
