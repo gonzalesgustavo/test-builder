@@ -1,7 +1,8 @@
 <div class="Assembler">
     <div *ngFor="let command of commands">
         <test-widget 
-            id="{{command.id}}" 
+            id="{{command.id}}"
+            type="{{command.type}}"
             symbol="{{command.payload.symbol}}" 
             attrOne="{{command.payload.attrOne}}" 
             attrTwo="{{command.payload.attrTwo}}" 

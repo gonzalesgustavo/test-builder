@@ -37,10 +37,30 @@
   }
 }
 
+.question-form {
+  text-align: center;
+  padding-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  .question {
+  }
+}
+
 .addition {
-  background: #4d9292;
+  background: #92f7b0;
 }
 
 .subtraction {
   background: #a07de2;
+}
+.division {
+  background: #94f2f5;
+}
+.multiplication {
+  background: #fc97e6;
+}
+
+.text {
+  background: #f1c58b;
 }

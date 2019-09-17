@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class TestWidgetComponent implements OnInit {
   @Input("id") id: number;
+  @Input("type") type: string;
   @Input("symbol") symbol: string;
   @Input("attrOne") attrOne: string;
   @Input("attrTwo") attrTwo: string;
@@ -32,5 +33,6 @@ export class TestWidgetComponent implements OnInit {
       default:
         break;
     }
+    if (this.type === "Paragraph") this.bgColor = "text";
   }
 }
