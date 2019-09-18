@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatDialogModule } from "@angular/material";
 import { BuildermodalComponent } from "./builder/buildermodal/buildermodal.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { TestComponent } from './test/test.component';
+import { TestViewComponent } from './test/test-view/test-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     MenuComponent,
     AssemblerComponent,
     TestWidgetComponent,
-    BuildermodalComponent
+    BuildermodalComponent,
+    TestComponent,
+    TestViewComponent
   ],
   imports: [
     BrowserModule,
