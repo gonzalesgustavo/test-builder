@@ -24,7 +24,6 @@ export class WarehouseService {
   }
 
   addCommand(command: Order) {
-    console.log(command.type);
     return this._commands.pipe(
       take(1),
       tap(commands => {
@@ -42,7 +41,7 @@ export class WarehouseService {
           default:
             break;
         }
-        console.log(str);
+        // console.log(str);
         this.buildTest(str).subscribe();
         commands.push(command);
         this._commands.next(commands);

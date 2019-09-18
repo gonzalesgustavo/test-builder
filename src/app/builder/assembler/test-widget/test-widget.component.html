@@ -2,11 +2,12 @@
     <div class="menu">
         <img src="assets/icons/CloseIcon.png" alt="close icon, X mark">
     </div>
-    <div class="problem-form" *ngIf="type === 'Math'">
+    <div class="problem-form" *ngIf="type === 'Math' || type === 'Fraction'">
         <h4>{{attrOne}}</h4>
         <p class="symbol">{{symbol}}</p>
         <h4>{{attrTwo}}</h4>
     </div>
+    
     <div class="question-form" *ngIf="type === 'Paragraph'">
         <p class="question">{{text | slice: 0:20}}...</p>
     </div>

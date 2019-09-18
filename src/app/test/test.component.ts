@@ -11,13 +11,17 @@ import { Subscription } from "rxjs";
 })
 export class TestComponent implements OnInit {
   testElements;
+  testStr = "";
   private sub: Subscription;
 
   constructor(private warehouseServise: WarehouseService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  build() {
     this.sub = this.warehouseServise.assembleTest().subscribe(elements => {
-      this.testElements = elements;
+      this.testElements = elements.forEach((el, idx) => {
+        this.testStr += `\n${idx + 1}. ${el}\n`;
+      });
     });
   }
 }
