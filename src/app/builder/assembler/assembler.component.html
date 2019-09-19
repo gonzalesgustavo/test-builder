@@ -1,12 +1,12 @@
 <div class="Assembler">
-    <div *ngFor="let command of commands">
+    <div *ngFor="let elements of testElements">
         <test-widget 
-            id="{{command.id}}"
-            type="{{command.type}}"
-            symbol="{{command.payload.symbol}}" 
-            attrOne="{{command.payload.attrOne}}" 
-            attrTwo="{{command.payload.attrTwo}}" 
-            text="{{command.payload.text}}"
+            id="{{elements.id}}"
+            type="{{elements.type}}"
+            symbol="{{elements.payload.symbol}}" 
+            attrOne="{{elements.payload.attrOne}}" 
+            attrTwo="{{elements.payload.attrTwo}}" 
+            text="{{elements.payload.text}}"
         ></test-widget>
     </div>
 </div>

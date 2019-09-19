@@ -1,3 +1,4 @@
+import { TestBuilderService } from "./../../../services/test-builder.service";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
@@ -14,7 +15,7 @@ export class TestWidgetComponent implements OnInit {
   @Input("text") text?: string;
 
   public bgColor: string;
-  constructor() {}
+  constructor(private testService: TestBuilderService) {}
 
   ngOnInit() {
     switch (this.symbol) {
@@ -34,5 +35,9 @@ export class TestWidgetComponent implements OnInit {
         break;
     }
     if (this.type === "Paragraph") this.bgColor = "text";
+  }
+
+  handleOnDelete(id: string) {
+    this.testService.delete(parseInt(id)).subscribe();
   }
 }

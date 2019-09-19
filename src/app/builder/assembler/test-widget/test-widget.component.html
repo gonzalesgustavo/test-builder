@@ -1,6 +1,6 @@
 <div class="wrapper {{bgColor}}">
     <div class="menu">
-        <img src="assets/icons/CloseIcon.png" alt="close icon, X mark">
+        <img src="assets/icons/CloseIcon.png" (click)="handleOnDelete(id)"  alt="close icon, X mark">
     </div>
     <div class="problem-form" *ngIf="type === 'Math' || type === 'Fraction'">
         <h4>{{attrOne}}</h4>

@@ -1,3 +1,5 @@
+import { TestResponse } from "./../../services/test-response.model";
+import { TestBuilderService } from "./../../services/test-builder.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 import { WarehouseService } from "src/app/warehouse.service";
@@ -10,13 +12,13 @@ import { Order } from "../order.model";
 })
 export class AssemblerComponent implements OnInit, OnDestroy {
   private sub: Subscription;
-  public commands: Order[];
+  public testElements: TestResponse[];
 
-  constructor(private warehouseService: WarehouseService) {}
+  constructor(private testService: TestBuilderService) {}
 
   ngOnInit() {
-    this.sub = this.warehouseService.getCommands().subscribe(sentcommands => {
-      this.commands = sentcommands;
+    this.sub = this.testService.testElements.subscribe(tElements => {
+      this.testElements = tElements;
     });
   }
   ngOnDestroy() {

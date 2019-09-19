@@ -1,3 +1,5 @@
+import { TestResponse } from "./../../services/test-response.model";
+import { TestBuilderService } from "./../../services/test-builder.service";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
@@ -24,7 +26,7 @@ export class BuildermodalComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<BuildermodalComponent>,
     private fb: FormBuilder,
-    private warehouseService: WarehouseService
+    private testService: TestBuilderService
   ) {}
 
   ngOnInit() {}
@@ -34,7 +36,7 @@ export class BuildermodalComponent implements OnInit {
   }
 
   onMathSubmit() {
-    let order: Order = {
+    let mathTestItem: TestResponse = {
       id: Math.floor(Math.random() * 10000000),
       type: this.formType,
       payload: {
@@ -43,23 +45,25 @@ export class BuildermodalComponent implements OnInit {
         attrTwo: this.mathForm.value.attrTwo
       }
     };
-    this.warehouseService.addCommand(order).subscribe(() => {
-      this.dialogRef.close();
-    });
+    this.addTestItem(mathTestItem);
   }
 
   onQuestionSubmit() {
-    let order: Order = {
+    let questionTestItem: TestResponse = {
       id: Math.floor(Math.random() * 10000000),
       type: this.formType,
       payload: {
         text: this.questionForm.value.text
       }
     };
-    this.warehouseService.addCommand(order).subscribe(() => {
+    this.addTestItem(questionTestItem);
+  }
+
+  private addTestItem = (tItem: TestResponse) => {
+    this.testService.add(tItem).subscribe(() => {
       this.dialogRef.close();
     });
-  }
+  };
 
   onCancelHandler() {
     this.dialogRef.close();

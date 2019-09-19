@@ -1,7 +1,7 @@
 import { element } from "protractor";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { take, tap, map } from "rxjs/operators";
+import { take, tap, map, switchMap } from "rxjs/operators";
 import { Order } from "./builder/order.model";
 
 @Injectable({
@@ -41,13 +41,13 @@ export class WarehouseService {
           default:
             break;
         }
-        // console.log(str);
         this.buildTest(str).subscribe();
         commands.push(command);
         this._commands.next(commands);
       })
     );
   }
+
   private buildTest(problem) {
     return this._test.pipe(
       take(1),
