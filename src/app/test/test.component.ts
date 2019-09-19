@@ -1,8 +1,8 @@
-import { element } from "protractor";
+import { TestDisplayItems } from "src/app/services/disp.model";
+import { TestDisplayService } from "./../services/test-display.service";
 import { Component, OnInit } from "@angular/core";
-import { WarehouseService } from "../warehouse.service";
-import { Order } from "../builder/order.model";
 import { Subscription } from "rxjs";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-test",
@@ -14,13 +14,14 @@ export class TestComponent implements OnInit {
   testStr = "";
   private sub: Subscription;
 
-  constructor(private warehouseServise: WarehouseService) {}
+  constructor(private testDispService: TestDisplayService) {}
 
   ngOnInit() {}
   build() {
-    this.sub = this.warehouseServise.assembleTest().subscribe(elements => {
-      this.testElements = elements.forEach((el, idx) => {
-        this.testStr += `\n${idx + 1}. ${el}\n`;
+    this.testStr = "";
+    this.sub = this.testDispService.test.pipe(take(1)).subscribe(testStr => {
+      this.testElements = testStr.forEach((el, idx) => {
+        this.testStr += `${idx}. ${el.testItem}`;
       });
     });
   }

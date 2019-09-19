@@ -1,3 +1,4 @@
+import { TestDisplayService } from "./../../services/test-display.service";
 import { TestResponse } from "./../../services/test-response.model";
 import { TestBuilderService } from "./../../services/test-builder.service";
 import { FormBuilder, Validators } from "@angular/forms";
@@ -5,6 +6,7 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { WarehouseService } from "src/app/warehouse.service";
 import { Order } from "../order.model";
+import { TestDisplayItems } from "src/app/services/disp.model";
 
 @Component({
   selector: "app-buildermodal",
@@ -26,10 +28,13 @@ export class BuildermodalComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<BuildermodalComponent>,
     private fb: FormBuilder,
-    private testService: TestBuilderService
+    private testService: TestBuilderService,
+    private testDispService: TestDisplayService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.testDispService.test.subscribe();
+  }
 
   radioChangeHandler(event: any) {
     this.formType = event.target.value as string;
@@ -60,6 +65,22 @@ export class BuildermodalComponent implements OnInit {
   }
 
   private addTestItem = (tItem: TestResponse) => {
+    let compiledStr: string = "";
+    switch (tItem.type) {
+      case "Math":
+        compiledStr = `${tItem.payload.attrOne} ${tItem.payload.symbol} ${tItem.payload.attrTwo} = ____________`;
+        break;
+      case "Fraction":
+        compiledStr = `${tItem.payload.attrOne} ${tItem.payload.symbol} ${tItem.payload.attrTwo} = ____________`;
+        break;
+      case "Paragraph":
+        compiledStr = `${tItem.payload.text}\n\n__________________________________________________\n__________________________________________________\n__________________________________________________`;
+        break;
+      default:
+        break;
+    }
+    let newTestItem = new TestDisplayItems(tItem.id, compiledStr);
+    this.testDispService.create(newTestItem).subscribe();
     this.testService.add(tItem).subscribe(() => {
       this.dialogRef.close();
     });
