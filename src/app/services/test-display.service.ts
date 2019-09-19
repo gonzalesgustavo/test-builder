@@ -16,6 +16,17 @@ export class TestDisplayService {
   get test() {
     return this._test.asObservable();
   }
+  delete(id: number) {
+    return this.test.pipe(
+      take(1),
+      tap(el => {
+        let newList = el.filter(el => {
+          return el.id !== id;
+        });
+        this._test.next(newList);
+      })
+    );
+  }
 
   create(addedStr: TestDisplayItems) {
     return this._test.pipe(

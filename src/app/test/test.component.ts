@@ -1,4 +1,3 @@
-import { TestDisplayItems } from "src/app/services/disp.model";
 import { TestDisplayService } from "./../services/test-display.service";
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
@@ -21,8 +20,14 @@ export class TestComponent implements OnInit {
     this.testStr = "";
     this.sub = this.testDispService.test.pipe(take(1)).subscribe(testStr => {
       this.testElements = testStr.forEach((el, idx) => {
-        this.testStr += `${idx}. ${el.testItem}`;
+        this.testStr += `${idx + 1}. ${el.testItem}\n\n`;
       });
     });
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }

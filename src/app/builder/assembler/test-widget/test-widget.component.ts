@@ -1,3 +1,4 @@
+import { TestDisplayService } from "./../../../services/test-display.service";
 import { TestBuilderService } from "./../../../services/test-builder.service";
 import { Component, OnInit, Input } from "@angular/core";
 
@@ -15,7 +16,10 @@ export class TestWidgetComponent implements OnInit {
   @Input("text") text?: string;
 
   public bgColor: string;
-  constructor(private testService: TestBuilderService) {}
+  constructor(
+    private testService: TestBuilderService,
+    private testDispService: TestDisplayService
+  ) {}
 
   ngOnInit() {
     switch (this.symbol) {
@@ -38,6 +42,7 @@ export class TestWidgetComponent implements OnInit {
   }
 
   handleOnDelete(id: string) {
+    this.testDispService.delete(parseInt(id)).subscribe();
     this.testService.delete(parseInt(id)).subscribe();
   }
 }
