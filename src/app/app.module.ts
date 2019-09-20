@@ -1,28 +1,26 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { MatDialogModule } from "@angular/material";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { BuilderComponent } from "./builder/builder.component";
-import { MenuComponent } from "./controlboard/menu.component";
+import { ControlboardComponent } from "./controlboard/controlboard.component";
 import { AssemblerComponent } from "./builder/assembler/assembler.component";
 import { TestWidgetComponent } from "./builder/assembler/test-widget/test-widget.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatDialogModule } from "@angular/material";
 import { BuildermodalComponent } from "./builder/buildermodal/buildermodal.component";
-import { ReactiveFormsModule } from "@angular/forms";
-import { TestComponent } from './test/test.component';
-import { TestViewComponent } from './test/test-view/test-view.component';
+import { TestComponent } from "./test/test.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     BuilderComponent,
-    MenuComponent,
+    ControlboardComponent,
     AssemblerComponent,
     TestWidgetComponent,
     BuildermodalComponent,
-    TestComponent,
-    TestViewComponent
+    TestComponent
   ],
   imports: [
     BrowserModule,

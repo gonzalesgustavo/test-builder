@@ -1,11 +1,10 @@
+import { Component, OnInit, Inject } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { MatDialogRef } from "@angular/material";
+
 import { TestDisplayService } from "./../../services/test-display.service";
 import { TestResponse } from "./../../services/test-response.model";
 import { TestBuilderService } from "./../../services/test-builder.service";
-import { FormBuilder, Validators } from "@angular/forms";
-import { Component, OnInit, Inject } from "@angular/core";
-import { MatDialogRef } from "@angular/material";
-import { WarehouseService } from "src/app/warehouse.service";
-import { Order } from "../order.model";
 import { TestDisplayItems } from "src/app/services/disp.model";
 
 @Component({

@@ -1,9 +1,8 @@
-import { TestResponse } from "./../../services/test-response.model";
-import { TestBuilderService } from "./../../services/test-builder.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
-import { WarehouseService } from "src/app/warehouse.service";
-import { Order } from "../order.model";
+
+import { TestResponse } from "./../../services/test-response.model";
+import { TestBuilderService } from "./../../services/test-builder.service";
 
 @Component({
   selector: "app-assembler",

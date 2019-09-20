@@ -1,14 +1,13 @@
-import { WarehouseService } from "./../warehouse.service";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { BuildermodalComponent } from "../builder/buildermodal/buildermodal.component";
 
 @Component({
-  selector: "app-menu",
-  templateUrl: "./menu.component.html",
-  styleUrls: ["./menu.component.scss"]
+  selector: "app-controlboard",
+  templateUrl: "./controlboard.component.html",
+  styleUrls: ["./controlboard.component.scss"]
 })
-export class MenuComponent implements OnInit {
+export class ControlboardComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {}
