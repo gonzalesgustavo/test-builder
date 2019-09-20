@@ -1,7 +1,11 @@
 .Test {
-  width: 95%;
-  height: 95%;
-  background: var(--color-secondary);
-  margin: 0 auto;
-  color: antiquewhite;
+  width: 100%;
+  height: 100vh;
+  background: var(--color-tertiary);
+}
+#test-view {
+  width: 100%;
+  height: 100vh;
+  font-size: 24pt;
+  font-family: var(--font-main);
 }

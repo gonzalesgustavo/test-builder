@@ -9,17 +9,18 @@
 :root {
   //themeing
   --color-primary: #707070;
-  --color-secondary: #1f1d20;
-  --color-tertiary: #c2b7ab;
+  --color-secondary: #585858;
+  --color-tertiary: #fffcf2;
   --color-tint: #cbcac9;
+  --color-base: #3a4a48;
   --color-danger: hsla(14, 83%, 27%, 0.733);
   --color-success: hsla(202, 74%, 25%, 0.644);
   //fonts
-  --font-title: "Inconsolata", monospace;
+  --font-main: "Inconsolata", monospace;
 }
 
 body {
-  background-color: #312d28;
+  background-color: #3d3d3c;
   overflow: hidden;
 }
 .mat-dialog-container {

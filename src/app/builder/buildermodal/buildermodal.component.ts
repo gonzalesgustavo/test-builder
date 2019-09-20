@@ -73,7 +73,7 @@ export class BuildermodalComponent implements OnInit {
         compiledStr = `${tItem.payload.attrOne} ${tItem.payload.symbol} ${tItem.payload.attrTwo} = ____________`;
         break;
       case "Paragraph":
-        compiledStr = `${tItem.payload.text}\n\n__________________________________________________\n__________________________________________________\n__________________________________________________`;
+        compiledStr = `${tItem.payload.text}\n\n\n`;
         break;
       default:
         break;

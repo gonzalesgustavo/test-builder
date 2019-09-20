@@ -1,7 +1,6 @@
 import { TestDisplayService } from "./../services/test-display.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter } from "@angular/core";
 import { Subscription } from "rxjs";
-import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-test",
@@ -15,15 +14,15 @@ export class TestComponent implements OnInit {
 
   constructor(private testDispService: TestDisplayService) {}
 
-  ngOnInit() {}
-  build() {
-    this.testStr = "";
-    this.sub = this.testDispService.test.pipe(take(1)).subscribe(testStr => {
+  ngOnInit() {
+    this.sub = this.testDispService.test.subscribe(testStr => {
+      this.testStr = "";
       this.testElements = testStr.forEach((el, idx) => {
         this.testStr += `${idx + 1}. ${el.testItem}\n\n`;
       });
     });
   }
+  build() {}
 
   ngOnDestroy() {
     if (this.sub) {

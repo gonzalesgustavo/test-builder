@@ -1,6 +1,7 @@
 .Builder {
   width: 660px;
-  display: flex;
+  display: grid;
+  background: var(--color-secondary);
 }
 .factory {
   width: 100%;

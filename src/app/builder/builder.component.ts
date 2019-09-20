@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-builder",
@@ -6,7 +6,13 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./builder.component.scss"]
 })
 export class BuilderComponent implements OnInit {
+  @Output("buildCommand") build = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {}
+
+  handleBuildBtn() {
+    this.build.emit("build");
+  }
 }
