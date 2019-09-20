@@ -9,6 +9,9 @@
 .title {
   padding-top: 25px;
   padding-left: 80px;
+  h1 {
+    font-family: var(--font-secondary);
+  }
 }
 .menu-select {
   width: 100%;
