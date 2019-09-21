@@ -31,7 +31,6 @@ export class EditModalComponent implements OnInit {
       });
       this.formType = this.testElement[0].type;
     });
-
     this.mathForm = this.fb.group({
       attrOne: [this.testElement[0].payload.attrOne, Validators.required],
       symbol: [this.testElement[0].payload.symbol, Validators.required],
@@ -58,7 +57,7 @@ export class EditModalComponent implements OnInit {
       }
     };
     this.testService.edit(parseInt(this.data.id), values).subscribe();
-    this.dialogRef.close();
+    this.dialogRef.close({ updatedData: values });
   }
 
   onCancelHandler() {
