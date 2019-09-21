@@ -44,11 +44,11 @@ export class TestWidgetComponent implements OnInit {
     if (this.type === "Paragraph") this.bgColor = "text";
   }
 
-  handleOnDelete(id: string) {
-    this.testDispService.delete(parseInt(id)).subscribe();
-    this.testService.delete(parseInt(id)).subscribe();
+  handleOnDelete(id: number) {
+    this.testDispService.delete(parseInt(id.toString())).subscribe();
+    this.testService.delete(parseInt(id.toString())).subscribe();
   }
-  handleOnEdit(id: string) {
+  handleOnEdit(id: number) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
@@ -56,7 +56,7 @@ export class TestWidgetComponent implements OnInit {
     dialogConfig.width = "700px";
 
     dialogConfig.data = {
-      id
+      id: id.toString()
     };
 
     this.dialog.open(EditModalComponent, dialogConfig);
