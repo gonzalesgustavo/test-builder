@@ -1,6 +1,8 @@
+import { EditModalComponent } from "./edit-modal/edit-modal.component";
 import { TestDisplayService } from "./../../../services/test-display.service";
 import { TestBuilderService } from "./../../../services/test-builder.service";
 import { Component, OnInit, Input } from "@angular/core";
+import { MatDialog, MatDialogConfig } from "@angular/material";
 
 @Component({
   selector: "test-widget",
@@ -18,7 +20,8 @@ export class TestWidgetComponent implements OnInit {
   public bgColor: string;
   constructor(
     private testService: TestBuilderService,
-    private testDispService: TestDisplayService
+    private testDispService: TestDisplayService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -44,5 +47,18 @@ export class TestWidgetComponent implements OnInit {
   handleOnDelete(id: string) {
     this.testDispService.delete(parseInt(id)).subscribe();
     this.testService.delete(parseInt(id)).subscribe();
+  }
+  handleOnEdit(id: string) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = "700px";
+    dialogConfig.width = "700px";
+
+    dialogConfig.data = {
+      id
+    };
+
+    this.dialog.open(EditModalComponent, dialogConfig);
   }
 }

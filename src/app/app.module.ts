@@ -12,6 +12,7 @@ import { TestWidgetComponent } from "./builder/assembler/test-widget/test-widget
 import { BuildermodalComponent } from "./builder/buildermodal/buildermodal.component";
 import { TestComponent } from "./test/test.component";
 import { InfoModalComponent } from "./controlboard/info-modal/info-modal.component";
+import { EditModalComponent } from "./builder/assembler/test-widget/edit-modal/edit-modal.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { InfoModalComponent } from "./controlboard/info-modal/info-modal.compone
     TestWidgetComponent,
     BuildermodalComponent,
     TestComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,10 @@ import { InfoModalComponent } from "./controlboard/info-modal/info-modal.compone
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [BuildermodalComponent, InfoModalComponent]
+  entryComponents: [
+    BuildermodalComponent,
+    InfoModalComponent,
+    EditModalComponent
+  ]
 })
 export class AppModule {}
