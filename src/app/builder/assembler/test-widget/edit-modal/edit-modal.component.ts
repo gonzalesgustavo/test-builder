@@ -58,7 +58,7 @@ export class EditModalComponent implements OnInit {
       }
     };
     this.testService.edit(parseInt(this.data.id), values).subscribe();
-    this.dialogRef.close();
+    this.dialogRef.close({ updatedData: values });
   }
 
   onCancelHandler() {

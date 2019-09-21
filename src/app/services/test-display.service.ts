@@ -16,14 +16,14 @@ export class TestDisplayService {
     return this._test.asObservable();
   }
   edit(id: number, data: TestResponse) {
-    let itemIndex;
     return this.test.pipe(
       take(1),
       tap(elements => {
-        // console.log(data);
-        let found = elements.map((el, idx) => {
-          itemIndex = idx;
-          return el.id === id;
+        let index;
+        elements.forEach((el, idx) => {
+          if (el.id === id) {
+            index = idx;
+          }
         });
         let compiledStr;
         switch (data.type) {
@@ -39,11 +39,12 @@ export class TestDisplayService {
           default:
             break;
         }
-        let newItem: TestDisplayItems = {
-          id: id,
-          testItem: compiledStr
-        };
-        elements.splice(itemIndex, 1, newItem);
+        elements.map(el => {
+          if (el.id === id) {
+            el.testItem = compiledStr;
+          }
+          return el;
+        });
         this._test.next(elements);
       })
     );

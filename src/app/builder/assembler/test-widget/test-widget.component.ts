@@ -59,6 +59,33 @@ export class TestWidgetComponent implements OnInit {
       id: id.toString()
     };
 
-    this.dialog.open(EditModalComponent, dialogConfig);
+    const dialogRef = this.dialog.open(EditModalComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(value => {
+      if (
+        value.updatedData.type === "Math" ||
+        value.updatedData.type === "Fraction"
+      ) {
+        switch (value.updatedData.payload.symbol) {
+          case "+":
+            this.bgColor = "addition";
+            break;
+          case "-":
+            this.bgColor = "subtraction";
+            break;
+          case "X":
+            this.bgColor = "multiplication";
+            break;
+          case "÷":
+            this.bgColor = "division";
+            break;
+          default:
+            break;
+        }
+      } else if (value.updatedData.type === "Paragraph") {
+        console.log("in");
+        this.bgColor = "text";
+        this.text = value.updatedData.payload.text;
+      }
+    });
   }
 }

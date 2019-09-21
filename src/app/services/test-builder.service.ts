@@ -34,33 +34,22 @@ export class TestBuilderService {
       take(1),
       tap(element => {
         //get index
-        element.map((el, idx) => {
-          itemIdx = idx;
-          return el.id === id;
+        let index;
+        element.forEach((el, idx) => {
+          if (el.id === id) {
+            index = idx;
+          }
         });
-        //set item values to incoming values
-        let edited: TestResponse;
-        if (data.type === "Math" || data.type === "Fraction") {
-          edited = {
-            id: id,
-            type: data.type,
-            payload: {
-              attrOne: data.payload.attrOne,
-              symbol: data.payload.symbol,
-              attrTwo: data.payload.attrTwo,
-              text: data.payload.text
-            }
-          };
-        } else {
-          edited = {
-            id: id,
-            type: data.type,
-            payload: {
-              text: data.payload.text
-            }
-          };
-        }
-        element.splice(itemIdx, 1, edited);
+        //access elements index
+        element.map(el => {
+          if (el.id === id) {
+            el.type = data.type;
+            el.payload.attrOne = data.payload.attrOne;
+            el.payload.symbol = data.payload.symbol;
+            el.payload.attrTwo = data.payload.attrTwo;
+          }
+          return el;
+        });
         this.testDispService.edit(id, data).subscribe();
         this._testElements.next(element);
       })
