@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { BuildermodalComponent } from "../builder/buildermodal/buildermodal.component";
+import { InfoModalComponent } from "./info-modal/info-modal.component";
 
 @Component({
   selector: "app-controlboard",
@@ -24,5 +25,14 @@ export class ControlboardComponent implements OnInit {
     };
 
     this.dialog.open(BuildermodalComponent, dialogConfig);
+  }
+  handleInfoBtnClick() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = "700px";
+    dialogConfig.width = "700px";
+
+    this.dialog.open(InfoModalComponent, dialogConfig);
   }
 }
