@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { BuildermodalComponent } from "../builder/buildermodal/buildermodal.component";
 import { InfoModalComponent } from "./info-modal/info-modal.component";
+import { IpcRenderer } from "electron";
 
 @Component({
   selector: "app-controlboard",
@@ -9,7 +10,18 @@ import { InfoModalComponent } from "./info-modal/info-modal.component";
   styleUrls: ["./controlboard.component.scss"]
 })
 export class ControlboardComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  private ipc: IpcRenderer;
+  constructor(private dialog: MatDialog) {
+    if ((<any>window).require) {
+      try {
+        this.ipc = (<any>window).require("electron").ipcRenderer;
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      console.warn("App not running inside Electron!");
+    }
+  }
 
   ngOnInit() {}
 
@@ -34,5 +46,9 @@ export class ControlboardComponent implements OnInit {
     dialogConfig.width = "700px";
 
     this.dialog.open(InfoModalComponent, dialogConfig);
+  }
+
+  handleBuild() {
+    this.ipc.send("message", "hello");
   }
 }

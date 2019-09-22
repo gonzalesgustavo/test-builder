@@ -1,31 +1,43 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
+const url = require("url");
+const path = require("path");
 
-let win;
+let mainWindow;
 
-let createWindow = () => {
-  win = new BrowserWindow({
+function createWindow() {
+  mainWindow = new BrowserWindow({
     width: 1324,
     height: 771,
-    backgroundColor: "#3d3d3c"
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
-  win.loadURL(`file://${__dirname}/dist/test-builder-v1/index.html`);
+  mainWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, `/dist/index.html`),
+      protocol: "file:",
+      slashes: true
+    })
+  );
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools();
 
-  win.on("closed", () => {
-    win = null;
+  ipcMain.on("message", (event, args) => {
+    console.log(args);
   });
-  win.webContents.openDevTools();
-};
+
+  mainWindow.on("closed", function() {
+    mainWindow = null;
+  });
+}
+
 app.on("ready", createWindow);
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+app.on("window-all-closed", function() {
+  if (process.platform !== "darwin") app.quit();
 });
 
-app.on("activate", () => {
-  if (win === null) {
-    createWindow();
-  }
+app.on("activate", function() {
+  if (mainWindow === null) createWindow();
 });

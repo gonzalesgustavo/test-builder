@@ -14,5 +14,5 @@ Angular side:
 Electron:
 
 ```bash
-    npm run electron-dev
+    npm run electron-build
 ```
