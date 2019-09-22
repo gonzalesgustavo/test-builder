@@ -4,6 +4,10 @@ import { BuildermodalComponent } from "../builder/buildermodal/buildermodal.comp
 import { InfoModalComponent } from "./info-modal/info-modal.component";
 import { IpcRenderer } from "electron";
 
+import { TestDisplayService } from "../services/test-display.service";
+import { take } from "rxjs/operators";
+import { ClipboardService } from "ngx-clipboard";
+
 @Component({
   selector: "app-controlboard",
   templateUrl: "./controlboard.component.html",
@@ -11,7 +15,12 @@ import { IpcRenderer } from "electron";
 })
 export class ControlboardComponent implements OnInit {
   private ipc: IpcRenderer;
-  constructor(private dialog: MatDialog) {
+  msg: string = "";
+  constructor(
+    private dialog: MatDialog,
+    private _testDispService: TestDisplayService,
+    private _clipboardService: ClipboardService
+  ) {
     if ((<any>window).require) {
       try {
         this.ipc = (<any>window).require("electron").ipcRenderer;
@@ -48,7 +57,31 @@ export class ControlboardComponent implements OnInit {
     this.dialog.open(InfoModalComponent, dialogConfig);
   }
 
+  handleCopy() {
+    this._clipboardService.configure({ cleanUpAfterCopy: true });
+    this._testDispService.test.pipe(take(1)).subscribe(elements => {
+      let test = "";
+      elements.forEach((el, idx) => {
+        test += `${idx + 1}. ${el.testItem}\n\n`;
+      });
+      this._clipboardService.copyFromContent(test);
+      alert("Test has been coppied to clipboard");
+    });
+  }
+
   handleBuild() {
-    this.ipc.send("message", "hello");
+    this._testDispService.test.pipe(take(1)).subscribe(elements => {
+      let test = "";
+      elements.forEach((el, idx) => {
+        test += `${idx + 1}. ${el.testItem}\n\n`;
+      });
+      this.ipc.send("test", test);
+      this.ipc.on("error", (ev, ar) => {
+        alert(ar);
+      });
+      this.ipc.on("success", (ev, ar) => {
+        alert(ar);
+      });
+    });
   }
 }

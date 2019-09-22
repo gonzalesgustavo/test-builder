@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { MatDialogModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ClipboardModule } from "ngx-clipboard";
 
 import { AppComponent } from "./app.component";
 import { BuilderComponent } from "./builder/builder.component";
@@ -30,7 +31,8 @@ import { EditModalComponent } from "./builder/assembler/test-widget/edit-modal/e
     BrowserModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
